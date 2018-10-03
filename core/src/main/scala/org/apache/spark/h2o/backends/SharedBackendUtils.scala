@@ -60,10 +60,6 @@ private[backends] trait SharedBackendUtils extends Logging with Serializable {
       conf.setH2OClientLogDir(defaultLogDir(conf.sparkConf.getAppId))
     }
 
-    if (conf.clientIp.isEmpty) {
-      conf.setClientIp(getHostname(SparkEnv.get))
-    }
-
     if (conf.backendClusterMode != "internal" && conf.backendClusterMode != "external") {
       logWarning(
         s"""'spark.ext.h2o.backend.cluster.mode' property is set to ${conf.backendClusterMode}.
